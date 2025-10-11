@@ -1,5 +1,8 @@
-schema_version: 20180708
-name: hello
-version: 0.0.1
-runtime: python
-entrypoint: python3 func.py
+def handler(ctx, data: bytes=None):
+    name = "World"
+    if data:
+        try:
+            name = data.decode("utf-8") or name
+        except Exception:
+            pass
+    return f"Hello, {name}!"
